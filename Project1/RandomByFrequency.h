@@ -21,13 +21,13 @@ class RandomByFrequency {
     }
 
 public:
-    inline RandomByFrequency(const std::vector<int>& values, const std::vector<std::size_t>& freqs, std::uint64_t seed = std::random_device{}())
+    RandomByFrequency(const std::vector<int>& values, const std::vector<std::size_t>& freqs, std::uint64_t seed = std::random_device{}())
         : values_(values), dist_(freqs.begin(), freqs.end()), gen_(seed)
     {
         validate(values_, freqs);
     }
 
-    inline int operator()() const {
+    int operator()() const {
         std::size_t idx = dist_(gen_);
         return values_[idx];
     }
